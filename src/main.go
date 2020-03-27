@@ -1,8 +1,10 @@
-package main
+package src
 
-import "fmt"
-import "bufio"
-import "os"
+import (
+	"bufio"
+	"fmt"
+	"os"
+)
 
 var (
 	version = "Alpha"
@@ -12,14 +14,14 @@ var (
 
 func main()  {
 	orchestrator()
-
 }
 func orchestrator(){
 	maindisplay()
-	
 	reader := bufio.NewReader(os.Stdin)
 	fmt.Print("Enter text: ")
-	text, _ := reader.ReadString('\n')
+	var text, _ = reader.ReadString('\n')
+	var hashes = hasher(text)
+	fmt.Println(hashes)
 	fmt.Println(text)
 }
 
