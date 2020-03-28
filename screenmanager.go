@@ -26,29 +26,27 @@ func capturerdisplay() {
 	reader := bufio.NewReader(os.Stdin)
 	fmt.Print("Enter option: ")
 	var text, _ = reader.ReadString('\n')
-	fmt.Println("Enter the key")
-	var keytext, _ = reader.ReadString('\n')
+/*	fmt.Println("Enter the key")*/
+	var keytext = "123456789012345678901234"
 	fmt.Println("Enter the secret to hash")
 	var plaintexttext, _ = reader.ReadString('\n')
-	key := []byte(keytext) // 32 bytes
-	plaintext := []byte(plaintexttext)
 	if  text == "1" {
-		callEncrypted(key,plaintext)
+		callEncrypted(keytext,plaintexttext)
 	}else{
-		callDecrypt(key,plaintext)
+		callDecrypt(keytext,plaintexttext)
 	}
 }
 
-func callEncrypted(keytext []byte , plaintexttext []byte ){
-	ciphertext, err := encrypt(keytext, plaintexttext)
+func callEncrypted(keytext string , plaintexttext string ){
+	ciphertext, err := encryptString(keytext,plaintexttext)
 	if err != nil {
 		log.Fatal(err)
 	}
 	fmt.Printf("%s\n", ciphertext)
 }
-func callDecrypt(keytext []byte , plaintexttext []byte) {
+func callDecrypt(keytext string , plaintexttext string) {
 
-	result, err := decrypt(keytext, plaintexttext)
+	result,err := decryptString(keytext, plaintexttext)
 	if err != nil {
 		log.Fatal(err)
 	}
