@@ -37,6 +37,7 @@ func capturerdisplay() {
 	}
 }
 
+
 func callEncrypted(keytext string , plaintexttext string ){
 	ciphertext, err := encryptString(keytext,plaintexttext)
 	if err != nil {
