@@ -3,8 +3,8 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"log"
 	"os"
+	"strings"
 )
 
 func maindisplay(){
@@ -26,31 +26,18 @@ func capturerdisplay() {
 	reader := bufio.NewReader(os.Stdin)
 	fmt.Print("Enter option: ")
 	var text, _ = reader.ReadString('\n')
-/*	fmt.Println("Enter the key")*/
 	var keytext = "123456789012345678901234"
 	fmt.Println("Enter the secret to hash")
 	var plaintexttext, _ = reader.ReadString('\n')
-	if  text == "1" {
-		callEncrypted(keytext,plaintexttext)
+	var result = makehash(text,keytext,plaintexttext)
+	if result {
+		fmt.Println("Exec Correct")
 	}else{
-		callDecrypt(keytext,plaintexttext)
+		fmt.Println("Exec Failed")
 	}
+
 }
-
-
-func callEncrypted(keytext string , plaintexttext string ){
-	ciphertext, err := encryptString(keytext,plaintexttext)
-	if err != nil {
-		log.Fatal(err)
-	}
-	fmt.Printf("%s\n", ciphertext)
+func clearinput(input string) string {
+	var cleartext = strings.Replace(input, "\n", "", -1)
+	return cleartext
 }
-func callDecrypt(keytext string , plaintexttext string) {
-
-	result,err := decryptString(keytext, plaintexttext)
-	if err != nil {
-		log.Fatal(err)
-	}
-	fmt.Printf("%s\n", result)
-}
-
