@@ -32,7 +32,7 @@ func callEncrypted(keytext string , plaintexttext string ){
 }
 func callDecrypt(keytext string , plaintexttext string) {
 
-	result,err := decryptString(keytext, plaintexttext)
+	result,err := decryptString(plaintexttext,keytext)
 	if err != nil {
 		log.Fatal(err)
 	}
