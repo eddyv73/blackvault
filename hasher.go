@@ -4,20 +4,39 @@ import (
 	"crypto/aes"
 	"crypto/cipher"
 	"crypto/rand"
-	"crypto/sha1"
 	"crypto/sha256"
 	"encoding/base64"
-	"encoding/hex"
 	"fmt"
 	"io"
+	"log"
 )
 
-func makehash(tohash string ) string {
-	h := sha1.New()
-	h.Write([]byte(tohash))
-	sha1Hash := hex.EncodeToString(h.Sum(nil))
+func makehash(text string, keytext string ,plaintexttext string ) bool {
 	fmt.Println("hasher running")
-	return sha1Hash
+	var greenlight = false
+	if  clearinput(text) == "1" {
+		callEncrypted(keytext,clearinput(plaintexttext))
+		greenlight = true
+	}else{
+		callDecrypt(keytext,clearinput(plaintexttext))
+		greenlight = true
+	}
+	return greenlight
+}
+func callEncrypted(keytext string , plaintexttext string ){
+	ciphertext, err := encryptString(keytext,plaintexttext)
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Printf("%s\n", ciphertext)
+}
+func callDecrypt(keytext string , plaintexttext string) {
+
+	result,err := decryptString(keytext, plaintexttext)
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Printf("%s\n", result)
 }
 func hashTo32Bytes(input string) []byte {
 
@@ -63,8 +82,6 @@ func encryptString(plainText string, keyString string) (cipherTextString string,
 	if err != nil {
 		return "", err
 	}
-	fmt.Println("echo",encrypted)
-
 	return base64.URLEncoding.EncodeToString(encrypted), nil
 }
 func encryptAES(key, data []byte) ([]byte, error) {
@@ -89,3 +106,4 @@ func encryptAES(key, data []byte) ([]byte, error) {
 	stream.XORKeyStream(encrypted, data)
 	return output, nil
 }
+

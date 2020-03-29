@@ -8,7 +8,6 @@ var (
 
 func main() {
 	orchestrator()
-
 }
 
 func orchestrator(){
