@@ -36,6 +36,7 @@ func capturerdisplay() {
 		fmt.Println("Exec Failed")
 	}
 
+
 }
 func clearinput(input string) string {
 	var cleartext = strings.Replace(input, "\n", "", -1)

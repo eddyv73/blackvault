@@ -23,6 +23,7 @@ func makehash(text string, keytext string ,plaintexttext string ) bool {
 	}
 	return greenlight
 }
+
 func callEncrypted(keytext string , plaintexttext string ){
 	ciphertext, err := encryptString(keytext,plaintexttext)
 	if err != nil {
@@ -37,6 +38,8 @@ func callDecrypt(keytext string , plaintexttext string) {
 		log.Fatal(err)
 	}
 	fmt.Printf("%s\n", result)
+	message := base64.StdEncoding.EncodeToString([]byte(result))
+	fmt.Printf("%s\n", message)
 }
 func hashTo32Bytes(input string) []byte {
 
@@ -53,13 +56,12 @@ func decryptString(cryptoText string, keyString string) (plainTextString string,
 	if len(encrypted) < aes.BlockSize {
 		return "", fmt.Errorf("cipherText too short. It decodes to %v bytes but the minimum length is 16", len(encrypted))
 	}
-
 	decrypted, err := decryptAES(hashTo32Bytes(keyString), encrypted)
 	if err != nil {
 		return "", err
 	}
-
-	return string(decrypted), nil
+	s := string(decrypted)
+	return s, nil
 }
 func decryptAES(key, data []byte) ([]byte, error) {
 	// split the input up in to the IV seed and then the actual encrypted data.
