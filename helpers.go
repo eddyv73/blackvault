@@ -8,6 +8,7 @@ func clearinput(input string) string {
 }
 func completingstring(input string) string {
 	var str strings.Builder
+	str.WriteString(input)
 	for len(str.String()) <= 24 {
 		str.WriteString("(A)")
 	}
