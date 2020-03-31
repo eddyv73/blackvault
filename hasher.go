@@ -11,8 +11,8 @@ func makehash(text string, keytext string ,plaintexttext string ) bool {
 	fmt.Println("hasher running")
 	var greenlight = false
 	var cleaned = clearinput(text)
-	if cleaned == "1" && masterkeyval(clearinput(plaintexttext)) {
-		e := Encrypt([]byte(keytext), clearinput(plaintexttext))
+	if cleaned == "1" {
+		e := Encrypt([]byte(keytext), masterkeyval(clearinput(plaintexttext)))
 		fmt.Printf("%s\n", e)
 		greenlight = true
 	} else {
@@ -21,13 +21,13 @@ func makehash(text string, keytext string ,plaintexttext string ) bool {
 	}
 	return greenlight
 }
-
-func masterkeyval(cleaned string) bool {
-	var iscorrectlen = false
+func masterkeyval(cleaned string) string {
 	if len(cleaned) >= 24 {
-		iscorrectlen = true
+		return cleaned
+	}else {
+		completed := completingstring(cleaned)
+		return completed
 	}
-	return iscorrectlen
 }
 func Encrypt(key []byte, plaintext string) string {
 	c, err := aes.NewCipher(key)

@@ -20,8 +20,6 @@ func maindisplay(){
 	fmt.Println("////////////////////////////")
 }
 func capturerdisplay() {
-
-
 	reader := bufio.NewReader(os.Stdin)
 	fmt.Print("Enter option: ")
 	var text, _ = reader.ReadString('\n')
