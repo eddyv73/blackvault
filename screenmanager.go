@@ -35,6 +35,12 @@ func capturerdisplay() {
 	} else {
 		fmt.Println("Exec Failed")
 	}
+}
+func GoodBye(){
 
+	fmt.Println("////////////////////////////")
+	fmt.Println("////	 GoodBye	////")
+	fmt.Println("////	  V		////")
+	fmt.Println("////////////////////////////")
 }
 

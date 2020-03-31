@@ -13,4 +13,5 @@ func main() {
 func orchestrator(){
 	maindisplay()
 	capturerdisplay()
+	GoodBye()
 }

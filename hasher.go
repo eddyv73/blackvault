@@ -50,7 +50,7 @@ func Decrypt(key []byte, ct string) {
 	plain := make([]byte, len(ciphertext))
 	c.Decrypt(plain, ciphertext)
 	s := string(plain[:])
-	fmt.Printf("AES Decrypyed Text:  %s\n", s)
+	fmt.Printf("Decrypyed Text:  %s\n", cleanstring(s))
 }
 func checksum(key string) string {
 	sha256 := sha256.Sum256([]byte(key))

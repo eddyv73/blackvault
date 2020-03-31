@@ -15,4 +15,8 @@ func completingstring(input string) string {
 	//this char can be var
 	return str.String()
 }
-
+func cleanstring(s string) string {
+	result := strings.ReplaceAll(s, "(A)", "")
+	resulta := strings.ReplaceAll(result, "(", "")
+	return resulta
+}
