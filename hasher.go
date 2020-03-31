@@ -9,16 +9,24 @@ import (
 func makehash(text string, keytext string ,plaintexttext string ) bool {
 	fmt.Println("hasher running")
 	var greenlight = false
-	if  clearinput(text) == "1" {
-		e := Encrypt([]byte(keytext),clearinput(plaintexttext))
+	var cleaned = clearinput(text)
+	if cleaned == "1" && masterkeyval(cleaned) {
+		e := Encrypt([]byte(keytext), clearinput(plaintexttext))
 		fmt.Printf("%s\n", e)
-
 		greenlight = true
-	}else{
-		Decrypt([]byte(keytext),clearinput(plaintexttext))
+	} else {
+		Decrypt([]byte(keytext), clearinput(plaintexttext))
 		greenlight = true
 	}
 	return greenlight
+}
+
+func masterkeyval(cleaned string) bool {
+	var iscorrectlen = false
+	if len(cleaned) >= len("wisterwisterwisterwister") {
+		iscorrectlen = true
+	}
+	return iscorrectlen
 }
 func Encrypt(key []byte, plaintext string) string {
 	c, err := aes.NewCipher(key)
