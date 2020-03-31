@@ -4,7 +4,6 @@ import (
 	"bufio"
 	"fmt"
 	"os"
-	"strings"
 )
 
 func maindisplay(){
@@ -26,19 +25,18 @@ func capturerdisplay() {
 	reader := bufio.NewReader(os.Stdin)
 	fmt.Print("Enter option: ")
 	var text, _ = reader.ReadString('\n')
-	var keytext = "123456789012345678901234"
+
+	fmt.Print("Enter your master password: ")
+	var key, _ = reader.ReadString('\n')
+
 	fmt.Println("Enter the secret to hash")
 	var plaintexttext, _ = reader.ReadString('\n')
-	var result = makehash(text,keytext,plaintexttext)
+	var result = makehash(text, checksum(key), plaintexttext)
 	if result {
 		fmt.Println("Exec Correct")
-	}else{
+	} else {
 		fmt.Println("Exec Failed")
 	}
 
+}
 
-}
-func clearinput(input string) string {
-	var cleartext = strings.Replace(input, "\n", "", -1)
-	return cleartext
-}

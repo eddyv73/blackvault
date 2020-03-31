@@ -2,6 +2,7 @@ package main
 
 import (
 	"crypto/aes"
+	"crypto/sha256"
 	"encoding/hex"
 	"fmt"
 )
@@ -10,7 +11,7 @@ func makehash(text string, keytext string ,plaintexttext string ) bool {
 	fmt.Println("hasher running")
 	var greenlight = false
 	var cleaned = clearinput(text)
-	if cleaned == "1" && masterkeyval(cleaned) {
+	if cleaned == "1" && masterkeyval(clearinput(plaintexttext)) {
 		e := Encrypt([]byte(keytext), clearinput(plaintexttext))
 		fmt.Printf("%s\n", e)
 		greenlight = true
@@ -23,7 +24,7 @@ func makehash(text string, keytext string ,plaintexttext string ) bool {
 
 func masterkeyval(cleaned string) bool {
 	var iscorrectlen = false
-	if len(cleaned) >= len("wisterwisterwisterwister") {
+	if len(cleaned) >= 24 {
 		iscorrectlen = true
 	}
 	return iscorrectlen
@@ -50,5 +51,10 @@ func Decrypt(key []byte, ct string) {
 	c.Decrypt(plain, ciphertext)
 	s := string(plain[:])
 	fmt.Printf("AES Decrypyed Text:  %s\n", s)
+}
+func checksum(key string) string {
+	sha256 := sha256.Sum256([]byte(key))
+	var keytext = sha256[0:24]
+	return string(keytext)
 }
 
