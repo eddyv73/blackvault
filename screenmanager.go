@@ -37,7 +37,7 @@ func capturerdisplay() {
 	}
 }
 func GoodBye(){
-
+	fmt.Println(Info("End"))
 	fmt.Println("////////////////////////////")
 	fmt.Println("////	 GoodBye	////")
 	fmt.Println("////	  V		////")
