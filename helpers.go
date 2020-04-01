@@ -8,6 +8,8 @@ var (
 	Info = Teal
 	Warn = Yellow
 	Fata = Red
+	Gree = Green
+	Purp = Purple
 )
 var (
 	Black   = Color("\033[1;30m%s\033[0m")

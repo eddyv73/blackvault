@@ -8,7 +8,7 @@ import (
 )
 
 func makehash(text string, keytext string ,plaintexttext string ) bool {
-	fmt.Println("hasher running")
+	fmt.Println(Warn("hasher running"))
 	var greenlight = false
 	var cleaned = clearinput(text)
 	if cleaned == "1" {
@@ -32,7 +32,7 @@ func masterkeyval(cleaned string) string {
 func Encrypt(key []byte, plaintext string) string {
 	c, err := aes.NewCipher(key)
 	if err != nil {
-		fmt.Errorf("NewCipher(%d bytes) = %s", len(key), err)
+		fmt.Errorf(Fata("NewCipher(%d bytes) = %s"), len(key), err)
 		panic(err)
 	}
 	out := make([]byte, len(plaintext))
@@ -50,7 +50,7 @@ func Decrypt(key []byte, ct string) {
 	plain := make([]byte, len(ciphertext))
 	c.Decrypt(plain, ciphertext)
 	s := string(plain[:])
-	fmt.Printf("Decrypyed Text:  %s\n", cleanstring(s))
+	fmt.Printf(Purp("Decrypyed Text:  %s\n"), cleanstring(s))
 }
 func checksum(key string) string {
 	sha256 := sha256.Sum256([]byte(key))

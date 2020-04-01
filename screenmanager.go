@@ -8,39 +8,38 @@ import (
 
 func maindisplay(){
 
-	fmt.Println("////////////////////////////")
-	fmt.Println("////Running first",version,"////")
-	fmt.Println("////////////////////////////")
-	fmt.Println("////	Blackvault	////")
-	fmt.Println("////	 Wister		////")
-	fmt.Println("////	",date,"	////")
-	fmt.Println("////////////////////////////")
-	fmt.Println("////	 1 - to encrypt	////")
-	fmt.Println("////	 2 - to decrypt ////")
-	fmt.Println("////////////////////////////")
+	fmt.Println(Gree("////////////////////////////"))
+	fmt.Println(Gree("////Running first ",version,"////"))
+	fmt.Println(Gree("////////////////////////////"))
+	fmt.Println(Gree("////	Blackvault	////"))
+	fmt.Println(Gree("////	 Wister		////"))
+	fmt.Println(Gree("////	",date,"		////"))
+	fmt.Println(Gree("////////////////////////////"))
+	fmt.Println(Gree("////	 1 - to encrypt	////"))
+	fmt.Println(Gree("////	 2 - to decrypt ////"))
+	fmt.Println(Gree("////////////////////////////"))
 }
 func capturerdisplay() {
 	reader := bufio.NewReader(os.Stdin)
-	fmt.Print("Enter option: ")
+	fmt.Print(Info("Enter option: "))
 	var text, _ = reader.ReadString('\n')
 
-	fmt.Print("Enter your master password: ")
+	fmt.Print(Info("Enter your master password: "))
 	var key, _ = reader.ReadString('\n')
 
-	fmt.Println("Enter the secret to hash")
+	fmt.Println(Info("Enter the secret to hash"))
 	var plaintexttext, _ = reader.ReadString('\n')
 	var result = makehash(text, checksum(key), plaintexttext)
 	if result {
-		fmt.Println("Exec Correct")
+		fmt.Println(Info("Exec Correct"))
 	} else {
-		fmt.Println("Exec Failed")
+		fmt.Println(Info("Exec Failed"))
 	}
 }
 func GoodBye(){
-	fmt.Println(Info("End"))
-	fmt.Println("////////////////////////////")
-	fmt.Println("////	 GoodBye	////")
-	fmt.Println("////	  V		////")
-	fmt.Println("////////////////////////////")
+	fmt.Println(Gree("////////////////////////////"))
+	fmt.Println(Gree("////	 GoodBye	////"))
+	fmt.Println(Gree("////	  V		////"))
+	fmt.Println(Gree("////////////////////////////"))
 }
 
