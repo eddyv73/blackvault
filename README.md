@@ -1,4 +1,6 @@
 # blackvault
+![Go](https://github.com/eddyv73/blackvault/workflows/Go/badge.svg)
+
 
 The blackvault, can encrypt all "String" in a hash AES
 
