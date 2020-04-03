@@ -1,9 +1,7 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
-	"os"
 )
 
 func maindisplay(){
@@ -19,17 +17,9 @@ func maindisplay(){
 	fmt.Println(Gree("////	 2 - to decrypt ////"))
 	fmt.Println(Gree("////////////////////////////"))
 }
-func capturerdisplay() {
-	reader := bufio.NewReader(os.Stdin)
-	fmt.Print(Info("Enter option: "))
-	var text, _ = reader.ReadString('\n')
+func capturerdisplay(masterkey string , secret string, mode string) {
 
-	fmt.Print(Info("Enter your master password: "))
-	var key, _ = reader.ReadString('\n')
-
-	fmt.Println(Info("Enter the secret to hash"))
-	var plaintexttext, _ = reader.ReadString('\n')
-	var result = makehash(text, checksum(key), plaintexttext)
+	var result = makehash(secret, checksum(masterkey), mode)
 	if result {
 		fmt.Println(Info("Exec Correct"))
 	} else {
