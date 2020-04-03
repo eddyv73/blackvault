@@ -13,9 +13,13 @@ func maindisplay(){
 	fmt.Println(Gree("////	 Wister		////"))
 	fmt.Println(Gree("////	",date,"		////"))
 	fmt.Println(Gree("////////////////////////////"))
-	fmt.Println(Gree("////	 1 - to encrypt	////"))
-	fmt.Println(Gree("////	 2 - to decrypt ////"))
+	fmt.Println(Gree("////	 -E  to encrypt	////"))
+	fmt.Println(Gree("////	 -D  to decrypt ////"))
+	fmt.Println(Gree("////	 -mk  masterkey	////"))
+	fmt.Println(Gree("////	 -secret secret ////"))
+	fmt.Println(Gree("////	 -h  this menu	////"))
 	fmt.Println(Gree("////////////////////////////"))
+	dummie()
 }
 func capturerdisplay(masterkey string , secret string, mode string) {
 
@@ -31,5 +35,12 @@ func GoodBye(){
 	fmt.Println(Gree("////	 GoodBye	////"))
 	fmt.Println(Gree("////	  V		////"))
 	fmt.Println(Gree("////////////////////////////"))
+}
+func dummie(){
+	fmt.Println(Gree("////////////////////////////////////////////////////////////////////"))
+	fmt.Println(Gree("////	 -h for more information				////"))
+	fmt.Println(Gree("////	 blackvault -h						////"))
+	fmt.Println(Gree("////	 blackvault -E -mk YourMasterKey -secret yoursecret	////"))
+	fmt.Println(Gree("////////////////////////////////////////////////////////////////////"))
 }
 

@@ -46,7 +46,7 @@ func orchestrator(optionrunning []string) {
 		}
 	}
 	if !help && !encrypt {
-		GoodBye()
+		dummie()
 	}
 }
 
